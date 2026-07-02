@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ==========================================================
+     PAGE TITLE + META
+     — Shows in the browser tab and in search results/link
+       previews. Update both whenever your role or focus changes.
+     ========================================================== -->
+<title>Arnel Gumban — Mechanical Engineer</title>
+<meta name="description" content="Arnel Gumban — Mechanical Engineer with 8+ years in power plant operations, control room monitoring, DCS/SCADA, and performance engineering.">
+
+<!-- Google Fonts: Source Serif 4 (headings — an open-source stand-in for
+     Claude's proprietary display serif "Tiempos", same warm editorial feel),
+     Inter (body text), IBM Plex Mono (labels/dates) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     1. DESIGN TOKENS
+     Every color and spacing choice below feeds from these
+     variables. To re-theme the whole site, change values here
+     — you don't need to touch anything further down.
+     ============================================================ */
+  :root{
+    /* --- Colors — Claude's warm cream + terracotta ("clay") palette --- */
+    --paper: #FAF9F5;        /* page background — warm off-white, not stark white */
+    --ink: #2B2A27;          /* primary text / headings — warm near-black, not pure #000 */
+    --ink-dim: #6B6A64;      /* secondary text (descriptions, labels) */
+    --ink-faint: #A9A69C;    /* tertiary text (dates, tick marks) */
+    --rule: #E8E4D9;         /* hairline divider color — warm, not cool gray */
+    --accent: #D97757;       /* single accent color ("clay"/terracotta) — links, tags, highlights */
+    --accent-tint: #F3E3DB;  /* light accent background, used for skill tags */
+  }
+
+  /* ============================================================
+     2. RESET + BASE
+     ============================================================ */
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; } /* smooth-scrolls to #anchors from the nav */
+
+  /* Respect users who've asked their OS to reduce motion */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ transition-duration:.01ms !important; animation-duration:.01ms !important; }
+  }
+
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;   /* body copy font — change here to swap globally */
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--accent); text-decoration-color: rgba(217,119,87,0.35); text-underline-offset: 3px; }
+  a:hover{ text-decoration-color: var(--accent); }
+
+  ::selection{ background: var(--accent); color: var(--paper); }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; } /* keyboard-navigation focus ring */
+
+  /* Central content column. Change max-width to make the page
+     wider/narrower everywhere at once. 960px reads comfortably
+     on a full desktop screen without huge empty margins; padding
+     shrinks on smaller screens so content still breathes on mobile. */
+  .wrap{
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+  @media (max-width: 900px){
+    .wrap{ padding: 0 40px; }
+  }
+  @media (max-width: 560px){
+    .wrap{ padding: 0 20px; }
+  }
+
+  /* ============================================================
+     3. "DIMENSION LINE" DIVIDER — the signature repeating element
+     Used above every section as: tick — label — line
+     Markup pattern to copy/reuse:
+       <div class="dim"><span class="dim-tick"></span><span class="dim-label">TEXT</span><span class="dim-line"></span></div>
+     ============================================================ */
+  .dim{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    margin: 0 0 40px;
+  }
+  .dim-tick{ width:1px; height:9px; background: var(--ink-faint); flex-shrink:0; }
+  .dim-line{ flex:1; height:1px; background: var(--rule); }
+  .dim-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    white-space: nowrap;
+  }
+
+  /* ============================================================
+     4. HEADER / TOP NAV
+     ============================================================ */
+  header{ padding: 28px 0; }
+  .header-inner{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+  }
+  header nav{ display:flex; gap: 22px; }
+  header nav a{ color: var(--ink-dim); text-decoration:none; }
+  header nav a:hover{ color: var(--ink); }
+  /* Nav links hide on narrow screens to avoid crowding the name */
+  @media (max-width:560px){ header nav{ display:none; } }
+
+  /* ============================================================
+     5. HERO (name, role, intro line, contact links, metric strip)
+     ============================================================ */
+  .hero{ padding: 46px 0 56px; }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  h1{
+    font-family:'Source Serif 4', serif;   /* heading font — change here to swap all headings */
+    font-weight: 700;
+    font-size: clamp(2.2rem, 6vw, 3.4rem); /* fluid sizing: min, preferred(viewport-based), max */
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+  .hero-role{
+    font-family:'Source Serif 4', serif;
+    font-weight: 500;
+    font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+    color: var(--ink-dim);
+    margin-top: 12px;
+  }
+  .hero-desc{
+    max-width: 560px;
+    margin-top: 22px;
+    color: var(--ink-dim);
+    font-size: 0.99rem;
+  }
+  .hero-links{
+    margin-top: 26px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+  }
+  .hero-links a, .hero-links span{ color: var(--ink-dim); text-decoration:none; }
+  .hero-links a{ text-decoration: underline; text-decoration-color: rgba(217,119,87,0.35); text-underline-offset: 3px; }
+  .hero-links a:hover{ color: var(--accent); text-decoration-color: var(--accent); }
+
+  /* --- Metric strip: the 4-number row under the hero.
+     To add/remove a metric, add/remove a .metric block in the HTML
+     and adjust grid-template-columns below to match the count. --- */
+  .metrics{
+    margin-top: 44px;
+    display:grid;
+    grid-template-columns: repeat(4,1fr); /* 4 columns — change to match number of .metric blocks */
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .metric{
+    padding: 18px 4px 18px 0;
+    border-right: 1px solid var(--rule);
+  }
+  .metric:last-child{ border-right:none; padding-right:0; }
+  .metric-val{
+    font-family:'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    color: var(--ink);
+  }
+  .metric-label{
+    margin-top: 4px;
+    font-size: 11.5px;
+    color: var(--ink-dim);
+    line-height: 1.4;
+  }
+  @media (max-width:560px){
+    .metrics{ grid-template-columns: repeat(2,1fr); } /* stack to 2x2 on mobile */
+    .metric{ padding: 16px 12px 16px 0; }
+  }
+
+  /* ============================================================
+     6. GENERIC SECTION SPACING
+     ============================================================ */
+  section{ padding: 54px 0; }
+
+  /* ============================================================
+     7. SUMMARY SECTION
+     ============================================================ */
+  .summary-text{ max-width: 620px; color: var(--ink-dim); }
+  .summary-text strong{ color: var(--ink); font-weight: 600; } /* used to bold key phrases inline */
+
+  /* ============================================================
+     8. EXPERIENCE SECTION
+     Each role is one ".job" block. To add a new job, copy an
+     entire .job block in the HTML and edit its contents —
+     no CSS changes needed.
+     ============================================================ */
+  .job{ padding: 26px 0; border-top: 1px solid var(--rule); }
+  .job:first-child{ border-top: none; padding-top:0; } /* removes rule above the very first job */
+  .job-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .job-role{
+    font-family:'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1.08rem;
+  }
+  .job-period{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  .job-org{ color: var(--accent); font-size: 0.92rem; margin-top: 3px; }
+  .job-bullets{
+    margin-top: 14px;
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 620px;
+  }
+  .job-bullets li{
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+    padding-left: 16px;
+    position: relative;
+  }
+  .job-bullets li::before{
+    content:"–";              /* the dash marker in front of each bullet */
+    position:absolute; left:0;
+    color: var(--ink-faint);
+  }
+
+  /* ============================================================
+     9. SKILLS SECTION
+     Each category is a labeled group of ".skill-tag" chips.
+     To add a skill, add another <span class="skill-tag"> inside
+     the relevant group. To add a whole new category, copy one
+     of the <div> groups inside .skill-cols.
+     ============================================================ */
+  .skill-cols{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr); /* 2-column layout of skill groups */
+    gap: 30px 40px;
+  }
+  @media (max-width:560px){ .skill-cols{ grid-template-columns: 1fr; } }
+  .skill-group-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .skill-list{ display:flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag{
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--accent-tint);
+    padding: 6px 11px;
+    border-radius: 2px;
+  }
+
+  /* ============================================================
+     10. PROJECTS SECTION
+     Each project is a ".proj" row: a small tag column + text.
+     Copy a .proj block to add another project.
+     ============================================================ */
+  .proj-list{ display:flex; flex-direction: column; }
+  .proj{
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+    display:grid;
+    grid-template-columns: 120px 1fr; /* fixed-width tag column + flexible text column */
+    gap: 18px;
+  }
+  .proj:first-child{ border-top:none; padding-top:0; }
+  @media (max-width:560px){ .proj{ grid-template-columns: 1fr; gap:6px; } } /* stack on mobile */
+  .proj-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .proj-title{
+    font-family:'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .proj-desc{
+    margin-top: 6px;
+    color: var(--ink-dim);
+    font-size: 0.92rem;
+    max-width: 500px;
+  }
+
+  /* ============================================================
+     11. EDUCATION + ADDITIONAL INFO SECTION
+     Two side-by-side columns, each made of ".info-row" lines
+     (label on the left, value on the right).
+     ============================================================ */
+  .info-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 40px;
+  }
+  @media (max-width:560px){ .info-grid{ grid-template-columns: 1fr; } }
+  .info-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .info-row{
+    display:flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-top: 1px solid var(--rule);
+    font-size: 0.92rem;
+  }
+  .info-row:first-of-type{ border-top:none; }
+  .info-row span:first-child{ color: var(--ink-dim); }  /* label */
+  .info-row span:last-child{ color: var(--ink); font-weight:500; text-align:right; } /* value */
+
+  /* ============================================================
+     12. FOOTER / CONTACT SECTION
+     ============================================================ */
+  footer{ padding: 56px 0 60px; }
+  .contact-title{
+    font-family:'Source Serif 4', serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    max-width: 520px;
+    line-height: 1.2;
+  }
+  .contact-title span{ color: var(--accent); } /* highlighted portion of the closing line */
+  .contact-row{
+    margin-top: 30px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 10px 30px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 13px;
+  }
+  .contact-row a{ color: var(--ink); }
+  .fine-print{
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==========================================================
+     HEADER — sticky-free top bar with short name + jump links.
+     The nav links point to the section IDs further down
+     (#experience, #skills, #projects, #contact).
+     ========================================================== -->
+<header>
+  <div class="wrap header-inner">
+    <span>A. GUMBAN</span>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ==========================================================
+       HERO — name, one-line role, short pitch, contact links,
+       and the 4-number metric strip. This is the first thing
+       a visitor sees, so keep the description to 1–2 sentences.
+       ========================================================== -->
+  <section class="hero">
+    <p class="hero-eyebrow">Available immediately · Abu Dhabi, UAE</p>
+    <h1>Arnel Gumban</h1>
+    <p class="hero-role">Mechanical Engineer — Power Plant Operations &amp; Performance</p>
+    <p class="hero-desc">
+      8+ years operating and analyzing thermal power plants — control room monitoring via DCS/SCADA, start-up and shutdown sequences, alarm response, and performance engineering to ASME PTC standards.
+    </p>
+
+    <!-- Contact links row. Add/remove <a> or <span> items as needed. -->
+    <div class="hero-links">
+      <a href="mailto:gumban.nel@gmail.com">gumban.nel@gmail.com</a>
+      <a href="tel:+971524853849">+971 52 485 3849</a>
+      <span>Al Falah Street, Abu Dhabi, UAE</span>
+      <a href="https://arnelgumban.my.site/" target="_blank" rel="noopener">Portfolio ↗</a>
+    </div>
+
+    <!-- Metric strip: 4 quick stats. To add a 5th, add another
+         .metric block AND change grid-template-columns in the
+         .metrics CSS rule above (repeat(4,1fr) → repeat(5,1fr)). -->
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-val">8+</div>
+        <div class="metric-label">Years in plant operations &amp; engineering</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">0</div>
+        <div class="metric-label">Lost time incidents across control room tenure</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">5</div>
+        <div class="metric-label">Roles spanning field to control room to performance</div>
+      </div>
+      <div class="metric">
+        <div class="metric-val">30d</div>
+        <div class="metric-label">Minimum fuel stock maintained for continuous operation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SUMMARY — the CV's professional summary paragraph.
+       Wrap any phrase in <strong> to bold it, matching the
+       existing style.
+       ========================================================== -->
+  <section id="summary">
+    <div class="dim"><span class="dim-tick"></span><span class="dim-label">Summary</span><span class="dim-line"></span></div>
+    <p class="summary-text">
+      Mechanical Engineer with <strong>8+ years of experience</strong> in power plant operations, control room monitoring, and field equipment operation. Proven expertise in <strong>DCS/SCADA systems</strong>, plant start-up and shutdown, alarm handling, and emergency response. Experienced operating local and control room equipment per SOPs, coordinating with engineers for PTW isolations, and ensuring safe, reliable plant operation within strict environmental and operational limits. Strong background in shift reporting, data logging, and performance monitoring to support dispatch requirements and plant optimization.
+    </p>
+  </section>
+
+  <!-- ==========================================================
+       EXPERIENCE — one .job block per role, newest first.
+       TO ADD A NEW JOB: copy everything from
+       <div class="job"> ... </div> and paste it as the first
+       block (right after the opening <div class="dim">...</div>
+       line above), then edit role / org / dates / bullets.
+       ========================================================== -->
+  <section id="experience">
+    <div class="dim"><span class="dim-tick"></span><span class="dim-label">Experience</span><span class="dim-line"></span></div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-role">Maintenance Coordinator</span>
+        <span class="job-period">09/2025 — Present</span>
+      </div>
+      <div class="job-org">Hertz – Al-Futtaim · UAE</div>
+      <ul class="job-bullets">
+        <li>Coordinate and prioritize 30+ daily maintenance jobs, ensuring minimal equipment/vehicle downtime.</li>
+        <li>Apply structured troubleshooting and root cause analysis to recurring technical issues.</li>
+        <li>Optimize workflow between workshop, vendors, and operations teams to improve turnaround time.</li>
+        <li>Review and negotiate repair quotations to control operational costs.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-role">Plant Performance Engineer</span>
+        <span class="job-period">10/2022 — 08/2025</span>
+      </div>
+      <div class="job-org">FDC–MPC · Philippines</div>
+      <ul class="job-bullets">
+        <li>Conducted annual unit performance tests per ASME PTC standards to assess efficiency and post-maintenance improvements.</li>
+        <li>Analysed operational and equipment data to support maintenance decisions and improve reliability.</li>
+        <li>Performed RCA to identify equipment issues and reduce unplanned downtime.</li>
+        <li>Managed fuel inventory by scheduling annual fuel shipments based on forecasted generation and load consumption.</li>
+        <li>Maintained fuel stock at a minimum of 30 days of normal consumption to ensure continuous plant operation.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-role">Control Room Operator</span>
+        <span class="job-period">07/2020 — 09/2022</span>
+      </div>
+      <div class="job-org">FDC–MPC · Philippines</div>
+      <ul class="job-bullets">
+        <li>Operated and monitored plant systems via DCS/SCADA, maintaining stable operation within defined limits.</li>
+        <li>Executed unit start-up, shutdown, and load changes in accordance with SOPs.</li>
+        <li>Monitored and responded to alarms and process abnormalities, ensuring immediate corrective action.</li>
+        <li>Coordinated with Shift Charge Engineers and field operators for plant operations and maintenance activities.</li>
+        <li>Supported PTW isolations, ensuring safe preparation of equipment for maintenance.</li>
+        <li>Maintained accurate shift logs, operational reports, and handover documentation.</li>
+        <li>Achieved zero Lost Time Incidents (LTI) through strict adherence to safety procedures.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-role">Plant Operator</span>
+        <span class="job-period">10/2018 — 06/2020</span>
+      </div>
+      <div class="job-org">FDC–MPC · Philippines</div>
+      <ul class="job-bullets">
+        <li>Operated and monitored local plant equipment, ensuring parameters stayed within safe operating limits.</li>
+        <li>Executed equipment isolation and LOTO procedures for maintenance activities.</li>
+        <li>Supported control room operations during start-up, shutdown, and system adjustments.</li>
+        <li>Conducted routine inspections and troubleshooting of plant systems.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <span class="job-role">Plant Operator</span>
+        <span class="job-period">07/2017 — 08/2018</span>
+      </div>
+      <div class="job-org">STEAG · Philippines</div>
+      <ul class="job-bullets">
+        <li>Conducted monitoring of boilers, turbines, and auxiliary systems.</li>
+        <li>Assisted in plant start-up, shutdown, and load adjustments.</li>
+        <li>Supported maintenance activities including equipment isolation and restoration.</li>
+        <li>Maintained compliance with HSE and operational procedures.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SKILLS — grouped into labeled columns of tag chips.
+       TO ADD A SKILL: add another <span class="skill-tag">Name</span>
+       inside the right group's .skill-list.
+       TO ADD A CATEGORY: copy one of the six <div> groups below
+       (title + .skill-list) and edit its title/tags.
+       ========================================================== -->
+  <section id="skills">
+    <div class="dim"><span class="dim-tick"></span><span class="dim-label">Skills</span><span class="dim-line"></span></div>
+    <div class="skill-cols">
+      <div>
+        <div class="skill-group-title">Technical</div>
+        <div class="skill-list">
+          <span class="skill-tag">Power Plant Operations</span>
+          <span class="skill-tag">Boiler</span>
+          <span class="skill-tag">Turbine</span>
+          <span class="skill-tag">Water Treatment</span>
+          <span class="skill-tag">Ash Handling</span>
+          <span class="skill-tag">PTW</span>
+          <span class="skill-tag">LOTO</span>
+          <span class="skill-tag">DCS</span>
+          <span class="skill-tag">SCADA</span>
+          <span class="skill-tag">Thermodynamic Calculations</span>
+          <span class="skill-tag">Root Cause Analysis</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Process &amp; Management</div>
+        <div class="skill-list">
+          <span class="skill-tag">5S</span>
+          <span class="skill-tag">Kaizen</span>
+          <span class="skill-tag">Project Management</span>
+          <span class="skill-tag">ISO 45001</span>
+          <span class="skill-tag">ISO 9001</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Computer</div>
+        <div class="skill-list">
+          <span class="skill-tag">Excel (Advanced)</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Microsoft Outlook</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Engineering &amp; Design</div>
+        <div class="skill-list">
+          <span class="skill-tag">AutoCAD</span>
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">SketchUp</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Data &amp; Programming</div>
+        <div class="skill-list">
+          <span class="skill-tag">Power Query</span>
+          <span class="skill-tag">R Studio</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">ETL</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-title">Language</div>
+        <div class="skill-list">
+          <span class="skill-tag">English — Fluent</span>
+          <span class="skill-tag">Tagalog — Native</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       PROJECTS — one .proj row per project (tag + title + desc).
+       Copy a .proj block to add another project.
+       ========================================================== -->
+  <section id="projects">
+    <div class="dim"><span class="dim-tick"></span><span class="dim-label">Projects</span><span class="dim-line"></span></div>
+    <div class="proj-list">
+      <div class="proj">
+        <span class="proj-tag">POWER BI</span>
+        <div>
+          <div class="proj-title">Plant Performance Dashboard</div>
+          <p class="proj-desc">Monitors operational performance of a multi-unit thermal power plant — tracking generation output, fuel consumption, and heat rate to support data-driven operational decisions.</p>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="proj-tag">POWER BI</span>
+        <div>
+          <div class="proj-title">Fuel Inventory Dashboard</div>
+          <p class="proj-desc">Tracks vessel unloading and coal yard stacking activity to improve fuel inventory visibility — delivery logs, yard allocation, and stock levels for better logistics coordination.</p>
+        </div>
+      </div>
+      <div class="proj">
+        <span class="proj-tag">POWER BI</span>
+        <div>
+          <div class="proj-title">Garage Turnaround Time</div>
+          <p class="proj-desc">Fleet monitoring dashboard providing real-time visibility into vehicle repair status, maintenance schedules, and garage performance for maintenance planning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       EDUCATION + ADDITIONAL INFO — two-column list of
+       label/value rows. Add more .info-row lines as needed.
+       ========================================================== -->
+  <section id="education">
+    <div class="dim"><span class="dim-tick"></span><span class="dim-label">Education &amp; details</span><span class="dim-line"></span></div>
+    <div class="info-grid">
+      <div>
+        <div class="info-title">Education</div>
+        <div class="info-row"><span>BS Mechanical Engineering</span><span>2010 — 2016</span></div>
+        <div class="info-row"><span>Mindanao State University</span><span>Marawi City, PH</span></div>
+      </div>
+      <div>
+        <div class="info-title">Additional information</div>
+        <div class="info-row"><span>Notice period</span><span>Immediate</span></div>
+        <div class="info-row"><span>Visa status</span><span>Spouse visa</span></div>
+        <div class="info-row"><span>Driver's license</span><span>Yes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       FOOTER / CONTACT — closing headline + contact links + fine print.
+       ========================================================== -->
+  <footer id="contact">
+    <div class="dim"><span class="dim-tick"></span><span class="dim-label">Contact</span><span class="dim-line"></span></div>
+    <h2 class="contact-title">Immediately available in Abu Dhabi — <span>let's talk about your plant or fleet operations.</span></h2>
+    <div class="contact-row">
+      <a href="mailto:gumban.nel@gmail.com">gumban.nel@gmail.com</a>
+      <a href="tel:+971524853849">+971 52 485 3849</a>
+      <a href="https://arnelgumban.my.site/" target="_blank" rel="noopener">arnelgumban.my.site ↗</a>
+    </div>
+    <div class="fine-print">
+      <span>© 2026 Arnel Gumban</span>
+      <span>Mechanical Engineer · Power Plant Operations</span>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
