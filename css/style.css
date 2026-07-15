@@ -193,14 +193,7 @@ a{ color: inherit; text-decoration: none; }
 
 
 
-.hero__photo{
-  position: absolute;
-  top: 8px;
-  right: 32px;
-  width: 108px;
-  height: 108px;
-  z-index: 2;
-}
+
 .hero__photo{
     position: absolute;
     top: 20px;
