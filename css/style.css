@@ -177,6 +177,21 @@ a{ color: inherit; text-decoration: none; }
   letter-spacing: -0.01em;
 }
 .hero__title .accent{ color: var(--amber); }
+
+.hero__roles{
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: .03em;
+  color: var(--blue);
+}
+.hero__roles-sep{
+  color: var(--amber);
+  margin: 0 4px;
+}
+
+
+
 .hero__subtitle{
   margin-top: 22px; font-size: 18px; color: var(--text-muted); max-width: 560px;
 }
