@@ -314,12 +314,9 @@ a{ color: inherit; text-decoration: none; }
 }
 .project-card:hover{ border-color: var(--blue); transform: translateY(-4px); }
 .project-card__bars{
-  display:flex; align-items:flex-end; gap:5px; height: 56px; margin-bottom: 22px;
+  display:flex; align-items:flex-end; gap:5px; height: 2px; margin-bottom: 2px;
 }
-.project-card__bars span{
-  flex:1; height: var(--h); background: linear-gradient(180deg, var(--blue), var(--amber-dim));
-  border-radius: 1px 1px 0 0; opacity:.85;
-}
+
 .project-card h3{ font-size: 1.1rem; font-weight:700; }
 .project-card__tool{
   font-family: var(--font-mono); font-size: 11.5px; color: var(--amber);
