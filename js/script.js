@@ -84,3 +84,17 @@ const statObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 statEls.forEach(el => statObserver.observe(el));
+
+
+const hoverVideos = document.querySelectorAll('.hover-video');
+
+hoverVideos.forEach(video => {
+    video.addEventListener('mouseenter', () => {
+        video.play();
+    });
+
+    video.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0; // reset to start
+    });
+});
