@@ -852,3 +852,100 @@ a.contact-card:hover{ border-color: var(--amber); transform: translateY(-3px); }
     font-size: 1.5rem;
   }
 }
+
+
+/* ==========================
+PROJECT MODAL
+========================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.88);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:9999;
+
+    padding:30px;
+
+}
+
+.modal.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.modal-content{
+
+    width:min(1000px,95vw);
+
+    background:#1b232c;
+
+    border:1px solid var(--line);
+
+    border-radius:12px;
+
+    padding:30px;
+
+    overflow:auto;
+
+    max-height:90vh;
+
+}
+
+.modal video{
+
+    width:100%;
+
+    border-radius:8px;
+
+    margin-bottom:25px;
+
+}
+
+.modal h2{
+
+    margin-bottom:10px;
+
+}
+
+.modal p{
+
+    color:var(--text-muted);
+
+    margin-bottom:20px;
+
+}
+
+.modal-close{
+
+    float:right;
+
+    font-size:32px;
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    cursor:pointer;
+
+}
