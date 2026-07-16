@@ -416,18 +416,439 @@ a.contact-card:hover{ border-color: var(--amber); transform: translateY(-3px); }
   .contact__grid{ grid-template-columns: 1fr; }
            }
 
+/* ===========================================================
+   VIDEO
+=========================================================== */
+
 .video-box {
-    width: 100%;
-    margin-top: 15px;
-    border-radius: 8px;
-    overflow: hidden;
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel-raised);
 }
 
 .hover-video {
-    width: 100%;
-    border-radius: 8px;
-    display: block;
-    cursor: pointer;
-    transition: 0.3s;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease);
 }
 
+.hover-video:hover {
+  transform: scale(1.02);
+}
+
+
+/* ===========================================================
+   RESPONSIVE — TABLET
+=========================================================== */
+
+@media (max-width: 860px) {
+
+  /* Navigation */
+
+  .topbar__inner {
+    padding: 0 24px;
+  }
+
+  .nav {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+
+    display: none;
+    flex-direction: column;
+    gap: 0;
+
+    padding: 12px 24px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav__link {
+    width: 100%;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav__link:last-child {
+    border-bottom: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .readout {
+    display: none;
+  }
+
+
+  /* Hero section */
+
+  .hero {
+    padding: 120px 24px 0;
+    text-align: center;
+  }
+
+  .hero__grid {
+    inset: 0;
+  }
+
+  .hero__photo {
+    position: relative;
+    top: auto;
+    right: auto;
+
+    width: 190px;
+    height: 190px;
+
+    margin: 0 auto 38px;
+  }
+
+  .hero__inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    justify-content: center;
+  }
+
+  .hero__roles {
+    line-height: 1.8;
+  }
+
+  .hero__subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__cta {
+    justify-content: center;
+  }
+
+
+  /* Statistics */
+
+  .stat-panel {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+  }
+
+  .stat {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stat:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+
+  /* Section spacing */
+
+  .about,
+  .education {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .section-head,
+  .log__list,
+  .project-grid,
+  .skills__grid,
+  .contact__grid {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+
+  /* About */
+
+  .about__body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+
+  /* Experience */
+
+  .log-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .log-entry__meta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .log-entry__date {
+    padding-left: 0;
+  }
+
+
+  /* Projects */
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Skills */
+
+  .skills__grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Contact */
+
+  .contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ===========================================================
+   RESPONSIVE — MOBILE
+=========================================================== */
+
+@media (max-width: 600px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  .topbar__inner {
+    padding: 0 18px;
+  }
+
+  .brand__text {
+    font-size: 11px;
+  }
+
+  .nav {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+
+  /* Hero */
+
+  .hero {
+    padding: 110px 18px 0;
+  }
+
+  .hero__photo {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 30px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 13vw, 3.4rem);
+  }
+
+  .hero__roles {
+    font-size: 13px;
+  }
+
+  .hero__roles-sep {
+    display: none;
+  }
+
+  .hero__roles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero__subtitle {
+    margin-top: 18px;
+    font-size: 16px;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero__cta .btn {
+    width: 100%;
+  }
+
+
+  /* Statistics */
+
+  .stat-panel {
+    margin-top: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  .stat {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stat:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stat:last-child {
+    border-bottom: none;
+  }
+
+
+  /* Section spacing */
+
+  .about,
+  .log,
+  .projects,
+  .skills,
+  .education {
+    padding-top: 90px;
+  }
+
+  .contact {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .about,
+  .education {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .section-head,
+  .log__list,
+  .project-grid,
+  .skills__grid,
+  .contact__grid {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .section-head {
+    margin-bottom: 32px;
+  }
+
+  .section-head h2 {
+    font-size: 1.7rem;
+    line-height: 1.25;
+  }
+
+
+  /* About */
+
+  .about__body {
+    padding-top: 28px;
+    font-size: 15.5px;
+  }
+
+
+  /* Experience */
+
+  .log-entry {
+    padding: 25px 0;
+  }
+
+  .log-entry__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .log-entry__body h3 {
+    font-size: 1.1rem;
+  }
+
+  .log-entry__body li {
+    font-size: 14px;
+  }
+
+
+  /* Projects */
+
+  .project-card {
+    padding: 22px 18px 24px;
+  }
+
+
+  /* Skills */
+
+  .skills__grid {
+    gap: 30px;
+  }
+
+  .chip-list {
+    gap: 7px;
+  }
+
+  .chip-list li {
+    padding: 7px 11px;
+    font-size: 12.5px;
+  }
+
+
+  /* Contact */
+
+  .contact__grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Footer */
+
+  .footer {
+    padding: 24px 18px;
+  }
+}
+
+
+/* ===========================================================
+   RESPONSIVE — VERY SMALL PHONES
+=========================================================== */
+
+@media (max-width: 380px) {
+
+  .brand__text {
+    display: none;
+  }
+
+  .hero__photo {
+    width: 140px;
+    height: 140px;
+  }
+
+  .hero__title {
+    font-size: 2.35rem;
+  }
+
+  .hero__subtitle {
+    font-size: 15px;
+  }
+
+  .section-head h2 {
+    font-size: 1.5rem;
+  }
+}
